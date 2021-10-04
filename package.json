@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "John Ouellet @labboy0276",
   "license": "GPL-3.0",
-  "repository": "lando/hypeargvrdrive",
+  "repository": "lando/argv",
   "bugs": "https://github.com/lando/argv/issues",
   "homepage": "https://github.com/lando/argv",
   "keywords": [
@@ -14,37 +14,19 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "main": "lib/argv.js",
-  "files": [
-    "/lib"
-  ],
+  "main": "argv.js",
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.7",
     "chai": "^4",
     "eslint": "^5.13",
-    "leia-parser": "^0.4.0",
     "mocha": "^5",
     "nyc": "^14",
-    "pkg": "^5.3.1",
-    "rimraf": "^3.0.2",
     "version-bump-prompt": "^6.1.0"
   },
   "scripts": {
-    "build": "yarn clean && yarn pkg -c package.json -t node14 lib/argv.js",
-    "clean": "rimraf dist",
-    "generate:leia-tests": "leia \"examples/**/README.md\" test/leia -r 2 -s \"Start up tests\" -t \"Verification commands\" -c \"Destroy tests\" --split-file --spawn --stdin",
     "lint": "eslint .",
     "release": "bump --tag --all --push package.json",
-    "test:functional": "mocha --timeout 900000 test/**/*.func.js",
-    "test:unit": "nyc mocha --forbid-only \"test/**/*.test.js\""
-  },
-  "pkg": {
-    "outputPath": "dist",
-    "scripts": [
-      "lib/*.js"
-    ],
-    "assets": [
-      "package.json",
-      "yarn.lock"
-    ]
+    "test": "nyc mocha --forbid-only \"*.test.js\""
   }
 }
