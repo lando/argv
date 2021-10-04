@@ -16,6 +16,8 @@
   },
   "main": "argv.js",
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.7",
     "chai": "^4",
     "eslint": "^5.13",
     "mocha": "^5",
