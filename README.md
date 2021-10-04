@@ -9,6 +9,10 @@ Lando's argv module allows you to:
 Installation
 ------------
 
+```
+yarn add https://github.com/lando/argv.git#1.0.0
+```
+
 Usage
 -----
 
@@ -44,6 +48,9 @@ Both commands will return the value trill.
 Development
 -----------
 
+* Requires Node 14+
+* ```git clone git@github.com:lando/argv.git```
+
 Testing
 -------
 
@@ -53,7 +60,9 @@ Testing
 Releasing
 ---------
 
-* ```yarn release```
+```
+yarn release
+```
 
 Other Resources
 ---------------
