@@ -29,7 +29,7 @@
     "version-bump-prompt": "^6.1.0"
   },
   "scripts": {
-    "build": "yarn clean && yarn pkg -c package.json -t node14 bin/hyperdrive",
+    "build": "yarn clean && yarn pkg -c package.json -t node14 lib/argv.js",
     "clean": "rimraf dist",
     "generate:leia-tests": "leia \"examples/**/README.md\" test/leia -r 2 -s \"Start up tests\" -t \"Verification commands\" -c \"Destroy tests\" --split-file --spawn --stdin",
     "lint": "eslint .",
