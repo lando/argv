@@ -1,4 +1,4 @@
-const argv = require('../../lib/argv');
+const argv = require('./argv');
 const chai = require('chai');
 const expect = chai.expect;
 chai.should();

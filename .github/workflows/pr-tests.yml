@@ -1,4 +1,4 @@
-name: Lint Code
+name: Lint Code & Run Unit Tests
 
 on:
   pull_request:
