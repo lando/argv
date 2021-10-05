@@ -1,70 +1,99 @@
-ARGV
-==========
+# ARGV
 
-Lando's argv module allows you to:
+A very simple module called `argv` that allows you to:
 
-* Check process.argv for the present of certain flags
-* Set a default string value if the flag is present
+* Check whether certain flags exist in `process.argv`
+* Get the value of a flag in `process.argv`
 
-Installation
-------------
+## Installation
 
-```
+```bash
+# With npm
+npm install https://github.com/lando/argv.git#1.0.0
+
+# With yarn
 yarn add https://github.com/lando/argv.git#1.0.0
 ```
 
-Usage
------
+## Usage
 
-This module has 2 functions ```hasOption``` and ```getOption```.
+This module has two functions `hasOption` and `getOption`.
 
-**hasOption**
+### hasOption
 
-Checks to see if a flag is present in process.argv.
+Checks to see if a flag exists in `process.argv`.
 
-```
+```js
 const argv = require('argv');
-argv.hasOption('--debug'));
+
+// Will return Boolean
+const hasDebug = argv.hasOption('--debug'));
 ```
 
-**getOption**
+### getOption
 
-Gets the flag string or flag boolean to pass to your processes.  It also allows you to set a default value if the flag is present and no string follows your flag.
+Returns the value of the flag. If the flag is a switch then it will return `true|false` by default. If the flag has a `string` value it will return that string value.
 
-```
+```js
+// File: myscript.js
 const argv = require('argv');
-argv.getOption('--debug', {defaultValue: '*'});
+
+console.log(argv.getOption('--debug'));
 ```
 
-getOption will check for string variables such as:
+The above code will produce the following:
 
+```bash
+node myscript.js --debug
+> true
+
+node myscript.js --debug "trill"
+> trill
+
+hyperdrive list --debug=trill
+> trill
 ```
-hyperdrive list --debug "trill"
-hyperdrive list --debug="trill"
+
+You also can replace the default Boolean value with the `defaultValue` option.
+
+```js
+// File: myscript.js
+const argv = require('argv');
+
+console.log(argv.getOption('--debug', {defaultValue: 'the-truth-is-out-there'}));
 ```
 
-Both commands will return the value trill.
+```bash
+node myscript.js --debug
+> the-truth-is-out-there
+```
 
-Development
------------
+## Development
 
 * Requires Node 14+
-* ```git clone git@github.com:lando/argv.git```
+* Prefers `yarn`
 
-Testing
--------
-
-* Linting via ```yarn lint```
-* Unit tests via ```yarn test```
-
-Releasing
----------
-
+```bash
+git clone https://github.com/lando/argv.git && cd argv
+yarn install
 ```
+
+## Testing
+
+```bash
+# Lint the code
+yarn lint
+
+# Run unit tests
+# yarn test
+```
+
+## Releasing
+
+```bash
 yarn release
 ```
 
-Other Resources
----------------
+## Other Resources
 
 * [Important advice](https://www.youtube.com/watch?v=WA4iX5D9Z64)
