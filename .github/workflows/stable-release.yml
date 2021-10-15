@@ -1,21 +1,24 @@
-name: Run Tests
+name: Deploy stable releases
 
 on:
-  pull_request:
+  push:
+    tags:
+      - v*
 
 jobs:
-  tests:
+  deploy:
     runs-on: ${{ matrix.os }}
     env:
       TERM: xterm
     strategy:
       matrix:
         os:
-          - macos-10.15
           - ubuntu-20.04
-          - windows-2019
         node-version:
           - '14'
+        tags:
+          - latest
+          - stable
     steps:
       # Install deps and cache
       # Eventually it would be great if these steps could live in a separate YAML file
@@ -38,14 +41,14 @@ jobs:
       - name: Install Yarn dependencies
         run: yarn install --prefer-offline --frozen-lockfile
 
-      # Lint Code
+      # Let's do tests rq just to make sure we dont push something that is fundamentally broken
       - name: Lint code
         run: yarn lint
-      # Unit tests
       - name: Run unit tests
         run: yarn test
-      # Dry run tests publish
-      - name: Test deploy
-        run: npm publish --access public --dry-run
+
+      # Deploy
+      - name: Deploy ${{ matrix.tags }} release
+        run: npm publish --access public --tag ${{ matrix.tags }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
