@@ -9,10 +9,13 @@ A very simple module called `argv` that allows you to:
 
 ```bash
 # With npm
-npm install @lando/leia
+npm install @lando/argv
 
 # With yarn
-yarn add @lando/leia
+yarn add @lando/argv
+
+# You can also install the "edge" version which tracks against the latest commit
+yarn add @lando/argv@edge
 ```
 
 ## Usage
