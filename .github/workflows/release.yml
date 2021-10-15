@@ -38,9 +38,7 @@ jobs:
 
       # Deploy
       - name: Deploy stable releases
-        run: |
-          echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_DEPLOY_TOKEN  }}' > ${{ github.workspace }}/.npmrc
-          npm publish --access public
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
           NPM_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
