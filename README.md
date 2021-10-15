@@ -119,10 +119,11 @@ yarn release
 
 ## Contributors
 
-<a href="https://github.com/lando/platformsh/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=lando/platformsh" />
+<a href="https://github.com/lando/argv/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=lando/argv" />
 </a>
 
+Made with [contributors-img](https://contrib.rocks).
 
 ## Other Resources
 
