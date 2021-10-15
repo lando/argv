@@ -17,7 +17,6 @@ jobs:
         node-version:
           - '14'
         tags:
-          - latest
           - stable
     steps:
       # Install deps and cache
@@ -48,7 +47,9 @@ jobs:
         run: yarn test
 
       # Deploy
-      - name: Deploy ${{ matrix.tags }} release
-        run: npm publish --access public --tag ${{ matrix.tags }}
+      - name: Deploy stable releases
+        run: |
+          npm publish --access public
+          npm publish --access public --tag ${{ matrix.tags }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
