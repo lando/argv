@@ -19,16 +19,17 @@ jobs:
         tags:
           - edge
           - beta
+        registries:
+          - https://registry.npmjs.org
     steps:
       # Install deps and cache
-      # Eventually it would be great if these steps could live in a separate YAML file
-      # that could be included in line to avoid code duplication
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: ${{ matrix.registries }}
       - name: Get Yarn cache directory
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
