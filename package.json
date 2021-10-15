@@ -1,7 +1,7 @@
 {
   "name": "@lando/argv",
   "description": "A package for handling argv.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "John Ouellet @labboy0276",
   "license": "GPL-3.0",
   "repository": "github:lando/argv",
@@ -26,7 +26,6 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "publish": "bump --tag --all --push package.json",
     "release": "bump --tag --all --push package.json",
     "test": "nyc mocha --forbid-only \"*.test.js\""
   }
