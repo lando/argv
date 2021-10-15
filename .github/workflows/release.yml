@@ -1,4 +1,4 @@
-name: Deploy stable releases
+name: Publish to NPM
 
 on:
   push:
@@ -16,27 +16,16 @@ jobs:
           - ubuntu-20.04
         node-version:
           - '14'
-        tags:
-          - stable
     steps:
       # Install deps and cache
-      # Eventually it would be great if these steps could live in a separate YAML file
-      # that could be included in line to avoid code duplication
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Get Yarn cache directory
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Use Yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          scope: "@lando"
+          cache: yarn
       - name: Install Yarn dependencies
         run: yarn install --prefer-offline --frozen-lockfile
 
@@ -48,8 +37,6 @@ jobs:
 
       # Deploy
       - name: Deploy stable releases
-        run: |
-          npm publish --access public
-          npm publish --access public --tag ${{ matrix.tags }}
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}

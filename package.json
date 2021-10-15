@@ -26,6 +26,7 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "publish": "bump --tag --all --push package.json",
     "release": "bump --tag --all --push package.json",
     "test": "nyc mocha --forbid-only \"*.test.js\""
   }
