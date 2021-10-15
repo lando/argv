@@ -13,9 +13,6 @@ npm install @lando/argv
 
 # With yarn
 yarn add @lando/argv
-
-# You can also install the "edge" version which tracks against the latest commit
-yarn add @lando/argv@edge
 ```
 
 ## Usage
