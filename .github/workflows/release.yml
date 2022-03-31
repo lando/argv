@@ -42,12 +42,12 @@ jobs:
           if [ "${{ github.event.release.prerelease }}" ==  "false" ]; then
             npm publish --access public --dry-run
             # npm publish --access public --dry-run
-            ::notice title=Deployed stable release::Pushed latest release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}
+            echo "::notice title=Deployed stable release::Pushed latest release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}"
           else
             npm publish --access public --tag beta --dry-run
             npm publish --access public --tag edge --dry-run
             npm publish --access public --tag next --dry-run
-            ::notice title=Deployed stable release::Pushed next release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}
+            "::notice title=Deployed stable release::Pushed next release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}"
           fi
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}

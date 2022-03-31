@@ -1,3 +1,13 @@
+v1.0.8 [March 31, 2022](https://github.com/lando/argv/releases/tag/v1.0.8)
+-------------------------
+
+* Testing new release flow
+
+v1.0.7 [March 31, 2022](https://github.com/lando/argv/releases/tag/v1.0.7)
+-------------------------
+
+* Testing new release flow
+
 v1.0.6 [October 15, 2021](https://github.com/lando/argv/releases/tag/v1.0.6)
 -------------------------
 
