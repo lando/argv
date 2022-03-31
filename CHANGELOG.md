@@ -1,3 +1,9 @@
+v1.1.0 [March 31, 2022](https://github.com/lando/argv/releases/tag/v1.1.0)
+-----------------------
+
+* Bumped `ansi-regex` from `3.0.0` to `3.0.1` [#5](https://github.com/lando/argv/pull/5)
+* Testing new release flow
+
 v1.1.0-beta.1 [March 31, 2022](https://github.com/lando/argv/releases/tag/v1.1.0-beta.1)
 ------------------------------
 
