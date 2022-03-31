@@ -47,7 +47,7 @@ jobs:
             npm publish --access public --tag beta --dry-run
             npm publish --access public --tag edge --dry-run
             npm publish --access public --tag next --dry-run
-            "::notice title=Deployed stable release::Pushed next release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}"
+            echo "::notice title=Deployed stable release::Pushed next release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}"
           fi
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
