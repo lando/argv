@@ -17,12 +17,7 @@ jobs:
           - ubuntu-20.04
         node-version:
           - '14'
-        pre-release:
-          - beta
-          - edge
-          - next
-        release:
-          - latest
+        pre-release-tag: edge
 
     steps:
       # Install deps and cache
@@ -44,19 +39,24 @@ jobs:
         run: yarn test
 
       # Deploy
-      - name: Deploy ${{ matrix.pre-release }} pre-release to npm
-        if: github.event.release.prerelease == true
+      - name: Publish to npm
         run: |
-            npm publish --access public --tag ${{ matrix.pre-release }} --dry-run
-            npm publish --access public --tag ${{ matrix.pre-release }}
-            echo "::notice title=Deployed ${{ matrix.pre-release }} pre-release!::Pushed @lando/${{ github.event.repository.name }}@${{ github.ref_name }}@${{ matrix.pre-release }}"
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
-      - name: Deploy ${{ matrix.release }} release to npm
-        if: github.event.release.prerelease == false
-        run: |
-            npm publish --access public --tag ${{ matrix.release }} --dry-run
-            npm publish --access public --tag ${{ matrix.release }}
-            echo "::notice title=Deployed ${{ matrix.release }} release!::Pushed@lando/${{ github.event.repository.name }}@${{ github.ref_name }}@${{ matrix.release }}"
+          # Unpublish if this was edited because we will need to publish to a different tag
+          if [ "${{ github.event.action }}" ==  "edited" ]; then
+            npm unpublish @${{ github.repository }}@${{ github.ref_name }} --dry-run
+            npm unpublish @${{ github.repository }}@${{ github.ref_name }}
+            echo "::notice title=Unpublished previous @${{ github.repository }}@${{ github.ref_name }} release::This is an edited release so we are unpublishing the previous version of this release so we can publish it to a new tag."
+          fi
+
+          # Publish based on release type
+          if [ "${{ github.event.release.prerelease }}" ==  "false" ]; then
+            npm publish --access public --dry-run
+            npm publish --access public
+            echo "::notice title=Published ${{ github.ref_name }} to @${{ github.repository }}::This is a stable release published to the default 'latest' npm tag"
+          else
+            npm publish --access public --tag ${{ matrix.pre-release-tag }} --dry-run
+            npm publish --access public --tag ${{ matrix.pre-release-tag }}
+            echo "::notice title=Published ${{ github.ref_name }} to @${{ github.repository }}@${{ matrix.pre-release-tag }}::This is a pre-release published to the '${{ matrix.pre-release-tag }} npm tag"
+          fi
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
