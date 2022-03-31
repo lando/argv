@@ -113,8 +113,23 @@ yarn test
 
 ## Releasing
 
+To deploy and publish a new version of the package to the `npm` registry you need only [create a release on GitHub](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). That said, in order to create a release and succesfully publish it to `npm` you will want to make sure:
+
+* You have tagged the commit you want to deploy in `git` and pushed it up to GitHub
+* You have bumped the version in your `package.json` so that it doesn't collide with a version already published to `npm`
+
+In order to help with the above we recommend you run the convience command `yarn release` which will take care of both.
+
+Also note that if you create a "pre-release" it will tag the `npm` package with `next` instead of the default `latest` tag.
+
 ```bash
-yarn release
+# Will pull the most recent GitHub release
+yarn add @lando/argv
+
+# Will pull the most recent GitHub pre-release
+yarn add @lando/argv@next
+yarn add @lando/argv@edge
+yarn add @lando/argv@beta
 ```
 
 ## Contributors
