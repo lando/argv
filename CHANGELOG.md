@@ -1,4 +1,4 @@
-v1.1.0-beta.1 [March 31, 2022](https://github.com/lando/argv/releases/tag/v1.1.0-beta.0)
+v1.1.0-beta.1 [March 31, 2022](https://github.com/lando/argv/releases/tag/v1.1.0-beta.1)
 ------------------------------
 
 * Testing new release flow
