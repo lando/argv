@@ -17,6 +17,13 @@ jobs:
           - ubuntu-20.04
         node-version:
           - '14'
+        pre-release:
+          - beta
+          - edge
+          - next
+        release:
+          - latest
+
     steps:
       # Install deps and cache
       - name: Checkout code
@@ -37,17 +44,19 @@ jobs:
         run: yarn test
 
       # Deploy
-      - name: Deploy and publish release to npm
+      - name: Deploy ${{ matrix.pre-release }} pre-release to npm
+        if: github.event.release.prerelease == "true"
         run: |
-          if [ "${{ github.event.release.prerelease }}" ==  "false" ]; then
-            npm publish --access public --dry-run
-            # npm publish --access public --dry-run
-            echo "::notice title=Deployed stable release::Pushed latest release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}"
-          else
-            npm publish --access public --tag beta --dry-run
-            npm publish --access public --tag edge --dry-run
-            npm publish --access public --tag next --dry-run
-            echo "::notice title=Deployed stable release::Pushed next release @lando/${{ github.event.repository.name }}@${{ github.ref_name }}"
-          fi
+            npm publish --access public --tag ${{ matrix.pre-release }} --dry-run
+            npm publish --access public --tag ${{ matrix.pre-release }}
+            echo "::notice title=Deployed ${{ matrix.pre-release }} pre-release!::Pushed @lando/${{ github.event.repository.name }}@${{ github.ref_name }}@${{ matrix.pre-release }}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
+      - name: Deploy ${{ matrix.release }} release to npm
+        if: github.event.release.prerelease == "false"
+        run: |
+            npm publish --access public --tag ${{ matrix.release }} --dry-run
+            npm publish --access public --tag ${{ matrix.release }}
+            echo "::notice title=Deployed ${{ matrix.release }} release!::Pushed@lando/${{ github.event.repository.name }}@${{ github.ref_name }}@${{ matrix.release }}"
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
