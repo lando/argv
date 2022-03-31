@@ -120,16 +120,14 @@ To deploy and publish a new version of the package to the `npm` registry you nee
 
 In order to help with the above we recommend you run the convience command `yarn release` which will take care of both.
 
-Also note that if you create a "pre-release" it will tag the `npm` package with `next` instead of the default `latest` tag.
+Also note that if you create a "pre-release" it will tag the `npm` package with `edge` instead of the default `latest` tag. Also note that while you can toggle the pre-release checkbox after the initial release creation this will not trigger a new release and/or promote the release from `edge` to `latest`. If you want to deploy to `latest` then create a new release without pre-released checked.
 
 ```bash
 # Will pull the most recent GitHub release
 yarn add @lando/argv
 
 # Will pull the most recent GitHub pre-release
-yarn add @lando/argv@next
 yarn add @lando/argv@edge
-yarn add @lando/argv@beta
 ```
 
 ## Contributors

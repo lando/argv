@@ -41,14 +41,6 @@ jobs:
       # Deploy
       - name: Publish to npm
         run: |
-          # Unpublish if this was edited because we will need to publish to a different tag
-          if [ "${{ github.event.action }}" ==  "edited" ]; then
-            npm unpublish @${{ github.repository }}@${{ github.ref_name }} --dry-run
-            npm unpublish @${{ github.repository }}@${{ github.ref_name }}
-            echo "::notice title=Unpublished previous @${{ github.repository }}@${{ github.ref_name }} release::This is an edited release so we are unpublishing the previous version of this release so we can publish it to a new tag."
-          fi
-
-          # Publish based on release type
           if [ "${{ github.event.release.prerelease }}" ==  "false" ]; then
             npm publish --access public --dry-run
             npm publish --access public
