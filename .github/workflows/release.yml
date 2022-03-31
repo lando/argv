@@ -45,7 +45,7 @@ jobs:
 
       # Deploy
       - name: Deploy ${{ matrix.pre-release }} pre-release to npm
-        if: github.event.release.prerelease == "true"
+        if: github.event.release.prerelease == 'true'
         run: |
             npm publish --access public --tag ${{ matrix.pre-release }} --dry-run
             npm publish --access public --tag ${{ matrix.pre-release }}
@@ -53,7 +53,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
       - name: Deploy ${{ matrix.release }} release to npm
-        if: github.event.release.prerelease == "false"
+        if: github.event.release.prerelease == 'false'
         run: |
             npm publish --access public --tag ${{ matrix.release }} --dry-run
             npm publish --access public --tag ${{ matrix.release }}
