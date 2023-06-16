@@ -4,7 +4,6 @@ on:
   release:
     types:
       - published
-      - edited
 
 jobs:
   deploy:
@@ -37,6 +36,8 @@ jobs:
         run: yarn lint
       - name: Run unit tests
         run: yarn test
+      - name: Prepare release
+        uses: lando/prepare-release-action@v2
 
       # Deploy
       - name: Publish to npm
