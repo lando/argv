@@ -1,3 +1,7 @@
+## v1.1.2 [June 16, 2023](https://github.com/lando/argv/releases/tag/v1.1.2)
+
+* Switched release flow over to [@lando/prepare-release-action](https://github.com/lando/prepare-release-action)
+
 ## v1.1.1 [June 16, 2023](https://github.com/lando/argv/releases/tag/v1.1.1)
 
 * Switched release flow over to [@lando/prepare-release-action](https://github.com/lando/prepare-release-action)
