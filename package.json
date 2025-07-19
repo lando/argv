@@ -2,8 +2,8 @@
   "name": "@lando/argv",
   "description": "A package for handling argv.",
   "version": "1.1.2",
-  "author": "John Ouellet @labboy0276",
-  "license": "GPL-3.0",
+  "author": "Mike Pirog @pirog",
+  "license": "MIT",
   "repository": "github:lando/argv",
   "bugs": "https://github.com/lando/argv/issues/new/choose/",
   "homepage": "https://github.com/lando/argv",
@@ -12,14 +12,14 @@
     "argv"
   ],
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=20.0.0"
   },
   "main": "argv.js",
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/eslint-parser": "^7.15.7",
     "chai": "^4",
-    "eslint": "^5.13",
+    "eslint": "^7.32.0",
     "mocha": "^5",
     "nyc": "^14"
   },

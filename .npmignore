@@ -1,0 +1,8 @@
+.github
+.nyc_output
+coverage
+dist
+docs
+examples
+guides
+test
