@@ -11,30 +11,26 @@ jobs:
     strategy:
       matrix:
         os:
-          - macos-10.15
-          - ubuntu-20.04
-          - windows-2019
+          - macos-13
+          - ubuntu-24.04
+          - windows-2022
         node-version:
-          - '14'
+          - '20'
     steps:
       # Install deps and cache
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Install node ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: yarn
-      - name: Install Yarn dependencies
-        run: yarn install --prefer-offline --frozen-lockfile
-
-      # Lint Code
+          cache: npm
+      - name: Install dependencies
+        run: npm clean-install
       - name: Lint code
-        run: yarn lint
-      # Unit tests
+        run: npm run lint
       - name: Run unit tests
-        run: yarn test
-      # Dry run tests publish
+        run: npm run test
       - name: Test deploy
         run: npm publish --access public --dry-run
         env:
