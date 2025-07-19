@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.2.0 - [July 19, 2025](https://github.com/lando/argv/releases/tag/v1.2.0)
+
 * Granted permission
 
 ## v1.1.2 [June 16, 2023](https://github.com/lando/argv/releases/tag/v1.1.2)
