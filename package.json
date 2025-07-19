@@ -1,7 +1,7 @@
 {
   "name": "@lando/argv",
   "description": "A package for handling argv.",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "author": "Mike Pirog @pirog",
   "license": "MIT",
   "repository": "github:lando/argv",
